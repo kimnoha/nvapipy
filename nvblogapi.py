@@ -1,4 +1,4 @@
-"import os
+import os
 import sys
 import urllib.request
 import json
@@ -7,18 +7,18 @@ import random
 def get_blog_api(keyword):
     # 전달할 데이터 리스트
     blog_list = []
-    client_id = ""네이버개발자도구에서가져와야함""
-    client_secret = ""네이버개발자도구에서가져와야함""
+    client_id = "1APJjw2uslZl0aM4WjVb"
+    client_secret = "U1UmCUHjx9"
 
     # print('블로그 검색기 입니다.')
     # keyword = input('검색어를 입력하세요: ')
 
     encText = urllib.parse.quote(keyword)
-    url = ""https://openapi.naver.com/v1/search/blog?query="" + encText # JSON 결과
-    # url = ""https://openapi.naver.com/v1/search/blog.xml?query="" + encText # XML 결과
+    url = "https://openapi.naver.com/v1/search/news?query=" + encText # JSON 결과
+    # url = "https://openapi.naver.com/v1/search/blog.xml?query=" + encText # XML 결과
     request = urllib.request.Request(url)
-    request.add_header(""X-Naver-Client-Id"",client_id)
-    request.add_header(""X-Naver-Client-Secret"",client_secret)
+    request.add_header("X-Naver-Client-Id",client_id)
+    request.add_header("X-Naver-Client-Secret",client_secret)
     response = urllib.request.urlopen(request)
     rescode = response.getcode()
     if(rescode==200):
@@ -29,7 +29,7 @@ def get_blog_api(keyword):
         # print(type(data))
         # print(type(data['items'])) # 리스트
 
-        # 리스트를 풀어서 각각 딕셔너리에 있는 데이터 중에 
+        # 리스트를 풀어서 각각 딕셔너리에 있는 데이터 중에
         # 내가 원하는 값들만 출력
         # for item in data['items']: # 리스트중에서 딕셔너리 하나를 가지고 와서
         #     print('블로그 제목:', item['title']) # 딕셔너리 중에서 title로 되어 있는 데이터를 출력
@@ -42,6 +42,6 @@ def get_blog_api(keyword):
         # print('블로그 제목:', dict_item['title'])
         # print('블로그 링크:', dict_item['link'])
     else:
-        print(""Error Code:"" + rescode)
-        
+        print("Error Code:" + rescode)
+
     return blog_list
